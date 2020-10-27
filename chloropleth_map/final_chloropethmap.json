@@ -1,0 +1,109 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 800,
+  "height": 550,
+  "description": "Offences Recorded per Local Government Area",
+  "projection": {"type": "equirectangular"},
+  "params": [
+    {
+      "name": "year_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "2020",
+          "2019",
+          "2018",
+          "2017",
+          "2016",
+          "2015",
+          "2014",
+          "2013",
+          "2012",
+          "2011"
+        ],
+        "labels": ["None"],
+        "name": "Select Year: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/bsherriew/FIT3179/master/week9hw/metromelbourne_lga_gda2020.topojson",
+        "format": {"type": "topojson", "feature": "VIC_LGA_POLYGON_SHP_GDA2020"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "properties.ABB_NAME",
+            "type": "nominal",
+            "title": "Local Government Area"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/bsherriew/FIT3179/master/week9hw/metromelbourne_lga_gda2020.topojson",
+        "format": {"type": "topojson", "feature": "VIC_LGA_POLYGON_SHP_GDA2020"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.ABB_NAME",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/bsherriew/FIT3179/master/table1_yearsformat.csv"
+            },
+            "key": "LGA",
+            "fields": [
+              "2020",
+              "2019",
+              "2018",
+              "2017",
+              "2016",
+              "2015",
+              "2014",
+              "2013",
+              "2012",
+              "2011"
+            ]
+          }
+        },
+        {"calculate": "datum[year_selection]", "as": "crime_rate"}
+      ],
+      "mark": {"type": "geoshape", "stroke": "white"},
+      "encoding": {
+        "color": {
+          "field": "crime_rate",
+          "type": "quantitative",
+          "scale": {
+            "type": "linear",
+            "domain": [0, 30000],
+            "scheme": {"name": "blues"}
+          },
+          "legend": {
+            "orient": "top-right",
+            "direction": "horizontal",
+            "gradientLength": 250,
+            "title": "Rate Per 100,000 Populatione"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.ABB_NAME",
+            "type": "nominal",
+            "title": "Local Government Area"
+          },
+          {
+            "field": "crime_rate",
+            "type": "quantitative",
+            "title": "Rate Per 100,000 Population"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {}
+}
