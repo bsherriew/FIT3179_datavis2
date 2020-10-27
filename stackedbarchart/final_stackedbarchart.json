@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 500,
+  "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/bsherriew/FIT3179/master/week10hw/Table2_LGA_Recorded_Offences_2020.csv"
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "LGA",
+        "oneOf": [
+          "MELBOURNE",
+          "YARRA",
+          "GREATER DANDENONG",
+          "PORT PHILLIP",
+          "FRANKSTON",
+          "STONNINGTON",
+          "MARIBYRNONG",
+          "DAREBIN",
+          "BRIMBANK",
+          "HUME"
+        ]
+      }
+    }
+  ],
+  "encoding": {
+    "x": {"aggregate": "sum", "field": "Offence Count", "type": "quantitative"},
+    "y": {
+      "field": "LGA",
+      "type": "nominal",
+      "title": "Local Government Area",
+      "sort": "-x"
+    }
+  },
+  "layer": [
+    {
+      "mark": "bar",
+      "selection": {
+        "legend_highlight": {
+          "type": "multi",
+          "fields": ["offence_div"],
+          "bind": "legend"
+        }
+      },
+      "encoding": {
+        "color": {
+          "field": "offence_div",
+          "title": "Offence Division",
+          "scale": {"scheme": "set2"}
+        },
+        "opacity": {
+          "condition": {"selection": "legend_highlight", "value": 1},
+          "value": 0.2
+        },
+        "tooltip": [
+          {
+            "field": "offence_div",
+            "type": "nominal",
+            "title": "Offence Division"
+          },
+          {
+            "aggregate": "sum",
+            "field": "Offence Count",
+            "type": "quantitative",
+            "title": "Sum of Offence Count"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "right", "xOffset": 40, "aria": false},
+      "encoding": {
+        "text": {
+          "aggregate": "sum",
+          "field": "Offence Count",
+          "type": "quantitative"
+        },
+        "color": {"value": "black"}
+      }
+    }
+  ],
+  "config": {}
+}
