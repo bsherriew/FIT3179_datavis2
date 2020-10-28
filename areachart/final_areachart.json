@@ -14,7 +14,7 @@
       "axis": {"format": "%Y"}
     },
     "y": {"aggregate": "sum", "field": "Offence Count"},
-    "color": {"field": "Police Region", "scale": {"scheme": "category20c"}},
+    "color": {"field": "Police Region", "scale": {"scheme": "tableau10"}},
     "tooltip": [
       {"timeUnit": "year", "field": "Year", "title": "Year"},
       {"field": "Police Region"},
