@@ -5,7 +5,6 @@
   "data": {
     "url": "https://raw.githubusercontent.com/bsherriew/FIT3179/master/totaloffencecountyears.csv"
   },
-  "width": "container",
   "mark": "area",
   "encoding": {
     "x": {
