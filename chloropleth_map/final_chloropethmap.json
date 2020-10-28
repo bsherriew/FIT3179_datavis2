@@ -1,5 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": "container",
   "description": "Offences Recorded per Local Government Area",
   "projection": {"type": "equirectangular"},
   "params": [
