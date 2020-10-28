@@ -1,7 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "width": 566.66,
-  "height": 179.91,
   "data": {
     "url": "https://raw.githubusercontent.com/bsherriew/FIT3179/master/totaloffencecountyears.csv"
   },
