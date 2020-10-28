@@ -86,7 +86,7 @@
             "orient": "top-right",
             "direction": "horizontal",
             "gradientLength": 250,
-            "title": "Rate Per 100,000 Populatione"
+            "title": "Rate Per 100,000 Population"
           }
         },
         "tooltip": [
