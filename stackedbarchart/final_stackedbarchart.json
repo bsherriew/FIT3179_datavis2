@@ -47,7 +47,7 @@
         "color": {
           "field": "offence_div",
           "title": "Offence Division",
-          "scale": {"scheme": "set2"}
+          "scale": {"range": ["#ffbf79","#9ecae9",  "#88d27a", "#ff9d98", "#d6a5c9", "#d8b5a5"]}
         },
         "opacity": {
           "condition": {"selection": "legend_highlight", "value": 1},
